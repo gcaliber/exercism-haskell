@@ -1,8 +1,8 @@
 module Isogram (isIsogram) where
 
-import Data.Char
+import Data.Char (toLower)
 
 isIsogram :: String -> Bool
 isIsogram [] = True
-isIsogram (x:xs) | not (isAlpha x) = isIsogram xs
-                 | otherwise = toLower x `notElem` xs && toUpper x `notElem` xs && isIsogram xs
+isIsogram xs = lx `notElem` lxs && isIsogram (tail xs)
+             where (lx:lxs) = filter (`elem` ['a'..'z']) (map toLower xs) 
