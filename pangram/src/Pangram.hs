@@ -1,8 +1,7 @@
 module Pangram (isPangram) where
 
-import Data.Char
-import Data.List
+import Data.Char (toLower)
+import Data.List (sort, nub)
 
 isPangram :: String -> Bool
-isPangram xs = sort (nub (filter (`elem` alpha) (map toLower xs))) == alpha
-    where alpha = ['a'..'z']
+isPangram xs = (sort . nub) (filter (`elem` ['a'..'z']) (map toLower xs)) == ['a'..'z']
