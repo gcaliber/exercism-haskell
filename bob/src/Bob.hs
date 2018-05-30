@@ -10,11 +10,7 @@ whatever = "Whatever."
 
 responseFor :: String -> String
 responseFor [] = fine
-responseFor "?" = sure
-responseFor xs | any (`elem` unwanted) xs = responseFor (filter (not . (`elem` unwanted)) xs)
-               | all isNumber xs        = whatever
-               | all isNumber (init xs) = sure
-               | any isLower xs         = if last xs == '?' then sure else whatever
-               | otherwise              = if last xs == '?' then calm else chill
-               where 
-                    unwanted = "`~!@#$%^&*()-_=+[]{}\\|;:\'\"<>,./ \t\n\r\f\v"
+responseFor xs | any (`elem` ignored) xs = responseFor $ filter (not . (`elem` ignored)) xs
+               | any isLower xs || all isNumber (init xs) = if last xs == '?' then sure else whatever
+               | otherwise  = if last xs == '?' then calm else chill
+               where ignored = "`~!@#$%^&*()-_=+[]{}\\|;:\'\"<>,./ \t\n\r\f\v"
