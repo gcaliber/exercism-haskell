@@ -1,9 +1,9 @@
 module Diamond (diamond) where
 
-import Data.Char
+import Data.Char (isAlpha)
 
 diamond :: Char -> Maybe [String]
-diamond c | not (isAlpha c) = Nothing
+diamond c | not $ isAlpha c = Nothing
           | otherwise = Just (d ++ tail (reverse d))
           where d = diamond' ['A'..c]
 
