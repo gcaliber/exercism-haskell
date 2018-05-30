@@ -1,8 +1,7 @@
 module CollatzConjecture (collatz) where
 
 collatz :: Integer -> Maybe Integer
-collatz n | n < 1     = Nothing
-          | otherwise = Just (collatz' n)
+collatz n = if n < 1 then Nothing else Just (collatz' n)
 
 collatz' :: Integer -> Integer
 collatz' 1 = 0
